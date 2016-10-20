@@ -49,7 +49,8 @@ public class MybatisMain {
             
             user.setComment("comment");
             userDao.update(user);
-            User u = userDao.findByUserName(user_name);
+            //User u = userDao.findByUserName(user_name);
+            User u = session.selectOne("com.shiyq.mybatis.config.UserDao.findByUserName",user_name);
             System.out.println("comment is "+u.getComment());
             
             //userDao.delete(user_name);
