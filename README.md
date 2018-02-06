@@ -13,6 +13,8 @@
 	PRIMARY KEY (`id`),
 	UNIQUE INDEX `user_name` (`user_name`)
 );
+
+
 2、2016-2-6
     增加了disruptor的例子
     增加了唯一序列号生成算法，用于生成短链接
