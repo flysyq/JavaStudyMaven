@@ -15,7 +15,7 @@
 );
 
 
-2、2016-2-6
+2、2018-2-6
 
     增加了disruptor的例子
     
@@ -25,3 +25,12 @@
     
     测试了mysql和postgresql的插入效率，开二十个线程，插入在每秒1万上下，postgresql略快一些
     
+3、2018-2-7
+    
+	修改了MySQL、PostgreSQL程序，增加了批量插入功能，
+	
+	增加了MongoDB的单条和批量插入功能
+	
+	测试结果显示，PostgreSQL效果更佳
+	
+	
