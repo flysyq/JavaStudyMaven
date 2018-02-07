@@ -5,6 +5,7 @@
  */
 package com.shiyq.mysql;
 
+import com.shiyq.property.MyProperties;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -31,10 +32,10 @@ public class InsertThread extends Thread{
         Connection conn = null;
         Statement stmt = null;
         ResultSet rs = null;
+        String url = MyProperties.get("mysql.url");
                try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/study?userSSL=false&"
-                    + "user=root&password=123456");
+            conn = DriverManager.getConnection(url);
             stmt = conn.createStatement();
             int i = 0;
             while (true) {

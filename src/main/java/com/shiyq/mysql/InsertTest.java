@@ -5,25 +5,41 @@
  */
 package com.shiyq.mysql;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Date;
-
 /**
  *
  * @author flysy
  */
 public class InsertTest {
 
-    public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+    public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, InterruptedException {
         int num = 20;
-        String sql = "insert into s_user(code,name,password,create_date) values('abc','石永强','cde',now())";
+        
+        String sql = buildSQL(1000);
+        //System.out.println(sql);
 
         for (int i = 0; i < num; i++) {
             new InsertThread(sql).start();
         }
+
+        long start = System.currentTimeMillis();
+        long end;
+        while (true) {
+            Thread.sleep(1000);
+            end = System.currentTimeMillis();
+            if ((end - start) > 100 * 1000) {
+                System.exit(0);
+            }
+        }
+    }
+
+    public static String buildSQL(int i){
+        StringBuilder sqlBuilder = new StringBuilder();
+        sqlBuilder.append("insert into s_user(code,name,password,create_date) values");
+        int j = 0;
+        while (j++ < i) {
+            sqlBuilder.append("('abc','石永强','cde',now()),");
+        }
+        String sql = sqlBuilder.substring(0,sqlBuilder.lastIndexOf(","));
+        return sql;
     }
 }

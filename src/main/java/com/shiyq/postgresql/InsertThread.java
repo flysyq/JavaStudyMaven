@@ -5,6 +5,7 @@
  */
 package com.shiyq.postgresql;
 
+import com.shiyq.property.MyProperties;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -32,9 +33,9 @@ public class InsertThread extends Thread {
         Statement stmt = null;
         ResultSet rs = null;
         try {
-            String url = "jdbc:postgresql://127.0.0.1:5432/study";
-            String user = "postgres";
-            String password = "123456";
+            String url = MyProperties.get("postgresql.url");
+            String user = MyProperties.get("postgresql.user");
+            String password = MyProperties.get("postgresql.password");
             Class.forName("org.postgresql.Driver");
             conn = DriverManager.getConnection(url, user, password);
 
